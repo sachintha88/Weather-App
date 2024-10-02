@@ -13,8 +13,8 @@ The Weather App is a responsive web application built using modern web technolog
 
 APIs Used
 -----------------
--   **Open Weather API**: https://openweathermap.org/api
--   **Geo Location API**: https://getgeoapi.com/
+-   **Open Weather API** : https://openweathermap.org/api
+-   **Geo Location API** (auto detect initial location based on IP address): https://getgeoapi.com/
 
 
 Technologies Used
