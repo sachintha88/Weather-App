@@ -1,5 +1,5 @@
 import { Col, Row } from 'antd';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import IconPair from '../Components/IconPair';
 import { CurrentWeatherData } from './types';
 import { convertEpochToDay } from './utils';
@@ -69,4 +69,4 @@ const WeatherDetailsSidePane: FC<WeatherDetailsSidePaneProps> = ({
   );
 };
 
-export default WeatherDetailsSidePane;
+export default memo(WeatherDetailsSidePane);

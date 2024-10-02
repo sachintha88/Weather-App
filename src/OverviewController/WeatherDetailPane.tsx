@@ -1,5 +1,5 @@
 import { get, split } from 'lodash';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import {
   City,
   DetailedDescription,
@@ -41,4 +41,4 @@ const WeatherDetailPane: FC<WeatherDetailPaneProps> = ({
   );
 };
 
-export default WeatherDetailPane;
+export default memo(WeatherDetailPane);

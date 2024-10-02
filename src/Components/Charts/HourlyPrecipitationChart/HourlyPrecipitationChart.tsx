@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { memo, useContext, useEffect, useRef } from 'react';
 import { HourlyWeatherDatum } from '../../../OverviewController/types';
 import ThemeContext from '../../../Theme/ThemeContext';
 import { createHourlyPrecipitationChartOptions } from './chartUtils';
@@ -31,7 +31,7 @@ const HourlyPrecipitationChart: React.FC<HourlyPrecipitationChartProps> = ({
           chartInstance.resize();
         };
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', handleResize, { passive: true });
 
         return () => {
           chartInstance.dispose();
@@ -49,4 +49,4 @@ const HourlyPrecipitationChart: React.FC<HourlyPrecipitationChartProps> = ({
   );
 };
 
-export default HourlyPrecipitationChart;
+export default memo(HourlyPrecipitationChart);

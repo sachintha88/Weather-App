@@ -1,6 +1,13 @@
 import ReactECharts from 'echarts-for-react';
 import * as echarts from 'echarts/core';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  memo,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { TempForecastDatum } from '../../../OverviewController/types';
 import ThemeContext from '../../../Theme/ThemeContext';
 import { createTempChartOptions } from './chartUtils';
@@ -14,17 +21,20 @@ const TempChart: React.FC<TempChartProps> = ({ data }) => {
   const chartRef = useRef<ReactECharts>(null);
   const [options, setOptions] = useState<echarts.EChartsCoreOption>({});
 
+  const memoizedOptions = useMemo(() => {
+    const chartData = data || [];
+    return createTempChartOptions(chartData, colors);
+  }, [data, colors]);
+
   useEffect(() => {
     const initializeChart = () => {
-      const chartData = data || [];
-      const newOptions = createTempChartOptions(chartData, colors);
-      setOptions(newOptions);
+      setOptions(memoizedOptions);
 
       const handleResize = () => {
         chartRef.current?.getEchartsInstance().resize();
       };
 
-      window.addEventListener('resize', handleResize);
+      window.addEventListener('resize', handleResize, { passive: true });
 
       return () => {
         const chartInstance = chartRef.current?.getEchartsInstance();
@@ -49,4 +59,4 @@ const TempChart: React.FC<TempChartProps> = ({ data }) => {
   );
 };
 
-export default TempChart;
+export default memo(TempChart);

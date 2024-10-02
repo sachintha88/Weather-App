@@ -4,15 +4,21 @@ import styled from 'styled-components';
 interface InputPairProps {
   value?: string | null;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit?: () => Promise<void>;
+  onSubmit?: (
+    event:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | React.KeyboardEvent<HTMLInputElement>
+  ) => void;
   placeholder?: string;
   buttonText?: string;
+  width?: string; // Add width prop
 }
 
-const Container = styled.div`
+const Container = styled.div<{ width?: string }>`
   margin: 20px;
   text-align: center;
   display: flex;
+  width: ${(props) => props.width || 'auto'}; // Apply width prop
 `;
 
 const StyledInput = styled.input`
@@ -31,13 +37,27 @@ const StyledButton = styled.button`
 `;
 
 const InputPair: FC<InputPairProps> = memo(
-  ({ value, onChange, onSubmit, placeholder, buttonText = 'Submit' }) => {
+  ({
+    value,
+    onChange,
+    onSubmit,
+    placeholder,
+    buttonText = 'Submit',
+    width,
+  }) => {
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter' && onSubmit) {
+        onSubmit(event);
+      }
+    };
+
     return (
-      <Container>
+      <Container width={width}>
         <StyledInput
           type="text"
           value={value ?? ''}
           onChange={onChange}
+          onKeyDown={handleKeyPress}
           placeholder={placeholder}
         />
         <StyledButton onClick={onSubmit}>{buttonText}</StyledButton>

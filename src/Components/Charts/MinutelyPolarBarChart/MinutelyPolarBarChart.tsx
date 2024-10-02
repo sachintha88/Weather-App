@@ -34,7 +34,7 @@ const MinutelyPolarBarChart: React.FC<MinutelyPolarBarChartProps> = ({
           chartInstance.resize();
         };
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', handleResize, { passive: true });
 
         return () => {
           chartInstance.dispose();
