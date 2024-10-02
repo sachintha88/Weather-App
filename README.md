@@ -11,6 +11,12 @@ Overview
 
 The Weather App is a responsive web application built using modern web technologies. It provides users with real-time weather information, including temperature, precipitation, and other weather-related data. The app is designed to be user-friendly and visually appealing, leveraging various libraries and frameworks to enhance the user experience.
 
+APIs Used
+-----------------
+-   **Open Weather API**: https://openweathermap.org/api
+-   **Geo Location API**: https://getgeoapi.com/
+
+
 Technologies Used
 -----------------
 
