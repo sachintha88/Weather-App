@@ -13,8 +13,8 @@ The Weather App is a responsive web application built using modern web technolog
 
 APIs Used
 -----------------
--   **Open Weather API**: https://openweathermap.org/api
--   **Geo Location API**: https://getgeoapi.com/
+-   **Open Weather API** : https://openweathermap.org/api
+-   **Geo Location API** (auto detect initial location based on IP address): https://getgeoapi.com/
 
 
 Technologies Used
@@ -114,9 +114,10 @@ npm install
 
 1.  Create a [`.env`](vscode-file://vscode-app/c:/Users/sachi/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) file in the root directory and add your API keys:
 
-VITE_GEO_API_KEY=your_geo_api_key
 
-VITE_WEATHER_API_KEY=your_weather_api_key
+VITE_GEO_API_KEY=your_geo_api_key (**Geo Location API**: https://getgeoapi.com/)
+
+VITE_WEATHER_API_KEY=your_weather_api_key (**Open Weather API**: https://openweathermap.org/api)
 
 ### Running the App
 
