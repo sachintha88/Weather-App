@@ -47,7 +47,7 @@ const TempChart: React.FC<TempChartProps> = ({ data }) => {
 
     const cleanup = initializeChart();
     return cleanup;
-  }, [data, colors]);
+  }, [data, colors, setOptions, memoizedOptions]);
 
   return (
     <ReactECharts

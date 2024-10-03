@@ -45,7 +45,7 @@ const MinutelyPolarBarChart: React.FC<MinutelyPolarBarChartProps> = ({
 
     const cleanup = initializeChart();
     return cleanup;
-  }, [minutelyWeatherData, title, colors]);
+  }, [minutelyWeatherData, title, colors, createMinutelyPolarBarChartOptions]);
 
   return (
     <div ref={chartContainerRef} style={{ width: '100%', height: '100%' }} />

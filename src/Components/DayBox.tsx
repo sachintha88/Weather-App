@@ -32,7 +32,7 @@ const DayBox: FC<DayBoxProps> = memo(({ dailyWeatherData }) => {
       : new Date(dailyWeatherData.dt * 1000).toLocaleString('en-US', {
           weekday: 'long',
         });
-  }, [dailyWeatherData]);
+  }, [dailyWeatherData, isToday]);
 
   return (
     <GlassBox opacity={0.2} shadow={0.5} style={{ height: '100%' }}>

@@ -42,7 +42,7 @@ const HourlyPrecipitationChart: React.FC<HourlyPrecipitationChartProps> = ({
 
     const cleanup = initializeChart();
     return cleanup;
-  }, [weatherData, title, colors]);
+  }, [weatherData, title, colors, createHourlyPrecipitationChartOptions]);
 
   return (
     <div ref={chartContainerRef} style={{ width: '100%', height: '100%' }} />
