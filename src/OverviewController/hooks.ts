@@ -1,40 +1,11 @@
-import axios from 'axios';
-
 import { useQuery } from '@tanstack/react-query';
 import { useWeatherStore } from '../Stores/weatherStore';
-import { GeoCodeResponse, WeatherDataResponse } from './types';
+import { fetchWeatherData } from './apiUtils';
 import {
   extractDailyWeatherData,
   extractHourlyWeatherData,
   transformWeatherData,
 } from './utils';
-
-const fetchGeoCode = async (city: string, apiKey: string) => {
-  const geoCodeResponse = await axios.get<GeoCodeResponse[]>(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid${apiKey}`
-  );
-
-  const firstMatch = geoCodeResponse.data[0];
-  if (!firstMatch) {
-    throw new Error('No matching location found');
-  }
-  return firstMatch;
-};
-
-const fetchWeatherData = async (city: string) => {
-  console.log('fetchWeatherData called');
-  const apiKey = import.meta.env.VITE_OPENWEATHERMAP_API_KEY;
-  if (!apiKey) {
-    throw new Error('API key is missing');
-  }
-
-  const location = await fetchGeoCode(city, apiKey);
-  const { lon, lat } = location;
-  const response = await axios.get<WeatherDataResponse>(
-    `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&appid${apiKey}`
-  );
-  return { weatherData: response.data, location };
-};
 
 const useWeatherData = () => {
   const city = useWeatherStore((state) => state.city);

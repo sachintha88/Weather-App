@@ -8,6 +8,13 @@ import {
   WeatherStatus,
 } from './types';
 
+/**
+ * Transforms raw weather data and location data into a structured format.
+ *
+ * @param {unknown} weatherData - The raw weather data from the API.
+ * @param {unknown} locationData - The raw location data from the API.
+ * @returns {CurrentWeatherData | null} - The transformed weather data or null if input data is invalid.
+ */
 export const transformWeatherData = (
   weatherData: unknown,
   locationData: unknown
@@ -45,6 +52,14 @@ export const transformWeatherData = (
   return importantWeatherData;
 };
 
+/**
+ * Converts an epoch timestamp to a formatted date string in a specified timezone.
+ *
+ * @param {number} epoch - The epoch timestamp to convert.
+ * @param {string} tz - The timezone to use for conversion.
+ * @param {string} format - The format string for the output date.
+ * @returns {string} - The formatted date string.
+ */
 export const convertEpochToDay = (
   epoch: number,
   tz: string,
@@ -53,6 +68,13 @@ export const convertEpochToDay = (
   return moment.unix(epoch).tz(tz).format(format);
 };
 
+/**
+ * Extracts and transforms hourly weather data into a structured format.
+ *
+ * @param {HourlyWeatherData[]} hourly - The raw hourly weather data from the API.
+ * @param {string} tz - The timezone to use for the data.
+ * @returns {HourlyWeatherDatum[]} - The transformed hourly weather data.
+ */
 export const extractHourlyWeatherData = (
   hourly: HourlyWeatherData[],
   tz: string
@@ -68,6 +90,13 @@ export const extractHourlyWeatherData = (
   }));
 };
 
+/**
+ * Extracts and transforms daily weather data into a structured format.
+ *
+ * @param {any[]} daily - The raw daily weather data from the API.
+ * @param {string} tz - The timezone to use for the data.
+ * @returns {DailyWeatherDatum[]} - The transformed daily weather data.
+ */
 export function extractDailyWeatherData(
   daily: any[],
   tz: string
@@ -80,6 +109,12 @@ export function extractDailyWeatherData(
   }));
 }
 
+/**
+ * Checks if a given timestamp corresponds to today's date.
+ *
+ * @param {number} timestamp - The epoch timestamp to check.
+ * @returns {boolean} - True if the timestamp is today, false otherwise.
+ */
 export const isToday = (timestamp: number) => {
   const date = new Date(timestamp * 1000);
   const today = new Date();
